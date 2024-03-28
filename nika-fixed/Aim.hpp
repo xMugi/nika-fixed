@@ -1,6 +1,7 @@
 #pragma once
 #include "LocalPlayer.hpp"
 #include "Player.hpp"
+#include "Weapons.hpp"
 
 struct Aim {
     HitboxType Hitbox = HitboxType::Neck;
