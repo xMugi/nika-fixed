@@ -5,3 +5,4 @@ I only update the offset for the cheat expect nothing else.
 
 
 
+**Updated to Game Version v3.0.62.29 (Season 20) (26.03.24)**
