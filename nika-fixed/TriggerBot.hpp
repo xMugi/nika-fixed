@@ -23,17 +23,17 @@ struct TriggerBot {
         //printf("Last weapon held: [%s] - id: [%d]- SemiAuto: [%d] - Ammo: [%d]\n", WeaponName(weaponId).c_str(), weaponId, localPlayer->weaponSemiAuto, localPlayer->ammoInClip);        
         if (
            // weaponId != WEAPON_KRABER &&
-            weaponId != WEAPON_P2020 &&
+          //  weaponId != WEAPON_P2020 &&
             weaponId != WEAPON_MOZAMBIQUE &&
             weaponId != WEAPON_EVA8 &&
             weaponId != WEAPON_PEACEKEEPER &&
             weaponId != WEAPON_MASTIFF &&
-            weaponId != WEAPON_WINGMAN &&
-            weaponId != WEAPON_LONGBOW &&
-            weaponId != WEAPON_SENTINEL &&
+            weaponId != WEAPON_WINGMAN 
+          //  weaponId != WEAPON_LONGBOW &&
+           // weaponId != WEAPON_SENTINEL &&
           //  weaponId != WEAPON_G7 &&
            // weaponId != WEAPON_HEMLOCK &&
-            weaponId != WEAPON_3030 
+            //weaponId != WEAPON_3030
           //  weaponId != WEAPON_TRIPLE_TAKE &&
          //   weaponId != WEAPON_BOCEK &&
         //    weaponId != WEAPON_PROWLER &&
