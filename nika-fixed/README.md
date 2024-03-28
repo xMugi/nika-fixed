@@ -20,12 +20,12 @@ sudo apt-get install libxtst-dev
 
 ### 1. Download:
 ```
-git clone https://github.com/alibi08/nika-up-to-date.git
+git clone https://github.com/xMugi/nika-fixed.git
 ```
 
 ### 2. Get inside the "nika-up-to-date" folder
 ```
-cd nika-up-to-date
+cd nika-fixed
 ```
 
 ### 3. Get inside the "nika-fixed" folder
