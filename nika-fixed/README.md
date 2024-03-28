@@ -45,5 +45,5 @@ Open steam and start apex and wait for it to fully start
 
 ### 6. Run the cheat
 ```
-sudo ./a.out in your linux terminal
+sudo ./noka in your linux terminal
 
