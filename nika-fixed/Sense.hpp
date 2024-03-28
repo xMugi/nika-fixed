@@ -16,8 +16,8 @@ struct Sense {
 
     void update(int counter)
     {
-        int senseMaxRange = 250;
-        int senseMaxRangeOverWall = 250;
+        int senseMaxRange = 150;
+        int senseMaxRangeOverWall = 150;
         int gameMode = 0;
         if (!m_level->playable)
             return;
@@ -41,18 +41,31 @@ struct Sense {
                 player->localOrigin.x,
                 player->localOrigin.y,
                 player->localOrigin.z);
-            if (player->visible && !player->knocked && distance < senseMaxRange) {
+           if (player->visible && !player->knocked && distance < senseMaxRange) {
                 player->setGlowEnable(1);
                 player->setGlowThroughWall(1);
-                int healthShield = player->currentHealth + player->currentShields;
-                player->setCustomGlow(healthShield, true, false);
-            } 
+                int Shield = player->currentShields;
+                player->setCustomGlow(Shield, true, false);
+            }
             if (!player->visible && !player->knocked && distance < senseMaxRange){
                 player->setGlowEnable(1);
                 player->setGlowThroughWall(1);  
                 int healthShield = player->currentHealth + player->currentShields; 
                 player->setCustomGlow(healthShield, true, false);
-            } 
+            }
+          /* if (player->visible && player->knocked && distance < senseMaxRange){
+                player->setGlowEnable(0);
+                player->setGlowThroughWall(0);  
+                int healthShield = player->currentHealth + player->currentShields; 
+                player->setCustomGlow(healthShield, true, false);
+            }*/
+            /*
+            if (!player->visible && player->knocked && distance < senseMaxRange){
+                player->setGlowEnable(0);
+                player->setGlowThroughWall(0);  
+                int healthShield = player->currentHealth + player->currentShields; 
+                player->setCustomGlow(healthShield, false, false);
+            } */
             else if (distance < senseMaxRangeOverWall) {
                 player->setGlowEnable(1);
                 player->setGlowThroughWall(1);
