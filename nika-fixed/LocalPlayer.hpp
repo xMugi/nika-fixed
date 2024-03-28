@@ -38,12 +38,12 @@ struct LocalPlayer {
         knocked = mem::Read<short>(base + OFF_BLEEDOUT_STATE) > 0;
         inZoom = mem::Read<short>(base + OFF_ZOOMING) > 0;
         teamNumber = mem::Read<int>(base + OFF_TEAM_NUMBER);
-        inAttack = mem::Read<bool>(OFF_REGION + OFF_IN_ATTACK) > 0;
+        inAttack = mem::Read<bool>(OFF_REGION + OFF_INATTACK) > 0;
         inJump = mem::Read<bool>(OFF_REGION + OFF_IN_JUMP) > 0;
         localOrigin = mem::Read<Vector3D>(base + OFF_LOCAL_ORIGIN);
         local_yaw = mem::Read<float>(base + OFF_YAW);
 
-        currentHealth = mem::Read<int>(base + OFF_CURRENT_HEALTH);
+        currentHealth = mem::Read<int>(base + OFF_HEALTH);
         CameraPosition = mem::Read<Vector3D>(base + OFF_CAMERAORIGIN);
         viewAngles = mem::Read<Vector2D>(base + OFF_VIEW_ANGLES);
         punchAngles = mem::Read<Vector2D>(base + OFF_PUNCH_ANGLES);
@@ -52,9 +52,9 @@ struct LocalPlayer {
         if (!dead && !knocked) {
             weaponHandle = mem::Read<long>(base + OFF_WEAPON_HANDLE);
             weaponHandleMasked = weaponHandle & 0xffff;
-            grenadeID = mem::Read<int>(base + OFF_GRENADE_HANDLE);
+            grenadeID = mem::Read<int>(base + OFF_OFFHAND_WEAPON);
             weaponEntity = mem::Read<long>(OFF_REGION + OFF_ENTITY_LIST + (weaponHandleMasked << 5));
-            ammoInClip = mem::Read<int>(weaponEntity + OFFSET_AMMO);     
+            ammoInClip = mem::Read<int>(weaponEntity + OFF_AMMO);     
             weaponIndex = mem::Read<int>(weaponEntity + OFF_WEAPON_INDEX);
             WeaponProjectileSpeed = mem::Read<float>(weaponEntity + OFF_PROJECTILESPEED);
             WeaponProjectileScale = mem::Read<float>(weaponEntity + OFF_PROJECTILESCALE); 
