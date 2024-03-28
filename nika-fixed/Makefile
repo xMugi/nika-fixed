@@ -14,16 +14,16 @@ all: rebuild;
 
 # Clean up object files and the executable
 clean:
-	rm -f a.out
+	rm -f noka
 
 # Compilation and linking
-a.out: $(SRCS)
+noka: $(SRCS)
 	$(CXX) $^ -o $@ $(LIBS)
 
 
 # clean & build
 rebuild:
 	@$(MAKE) clean
-	@$(MAKE) a.out
-	echo "BUILD SUCCESSFUL - RUN: sudo ./a.out"
+	@$(MAKE) noka
+	echo "BUILD SUCCESSFUL - RUN: sudo ./noka"
 
