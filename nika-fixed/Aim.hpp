@@ -25,7 +25,7 @@ struct Aim {
     }
     void Update(int counter) {
         if (!cl->FEATURE_AIMBOT_ON) { ReleaseTarget(); return; }
-        if (Myself->weaponIndex == 113 || 
+        if (Myself->weaponIndex == 116 || 
         (Myself->grenadeID == -251)){ ReleaseTarget(); return; }
         
         if (Myself->inZoom) {
