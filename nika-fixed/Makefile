@@ -14,16 +14,16 @@ all: rebuild;
 
 # Clean up object files and the executable
 clean:
-	rm -f noka
+	rm -f nuki
 
 # Compilation and linking
-noka: $(SRCS)
+nuki: $(SRCS)
 	$(CXX) $^ -o $@ $(LIBS)
 
 
 # clean & build
 rebuild:
 	@$(MAKE) clean
-	@$(MAKE) noka
-	echo "BUILD SUCCESSFUL - RUN: sudo ./noka"
+	@$(MAKE) nuki
+	echo "BUILD SUCCESSFUL - RUN: sudo ./nuki"
 
