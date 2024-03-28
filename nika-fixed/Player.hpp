@@ -95,8 +95,8 @@ struct Player {
         if (base == 0) return;
         name = mem::ReadString(base + OFF_NAME, 1024);
         teamNumber = mem::Read<int>(base + OFF_TEAM_NUMBER);
-        currentHealth = mem::Read<int>(base + OFF_CURRENT_HEALTH);
-        currentShields = mem::Read<int>(base + OFF_CURRENT_SHIELDS);
+        currentHealth = mem::Read<int>(base + OFF_HEALTH);
+        currentShields = mem::Read<int>(base + OFF_SHIELD);
         if (!isPlayer() && !isDummie()) { reset(); return; }
         dead = (isDummie()) ? false : mem::Read<short>(base + OFF_LIFE_STATE) > 0;
         knocked = (isDummie()) ? false : mem::Read<short>(base + OFF_BLEEDOUT_STATE) > 0;
@@ -221,6 +221,7 @@ struct Player {
         }   
         return level + ((m_xp - levels[arraySize - 1] + 1) / 18000);
     }
+
     void setCustomGlow(int health, bool isVisible, bool isSameTeam)
     {
         static const int contextId = 0; // Same as glow enable
@@ -237,7 +238,7 @@ struct Player {
             settingIndex = 20;
         } else if (!isVisible) {
             settingIndex = 65;
-            glowColorRGB = { 2, 2, 2 }; // knocked enemies // gray
+            glowColorRGB = { 1, 0, 0 }; // knocked enemies // gray
         } else if (health >= 205) {
             settingIndex = 66;
             glowColorRGB = { 6, 0, 0 }; // red shield
@@ -250,7 +251,7 @@ struct Player {
         } else if (health >= 95) {
             settingIndex = 69;
             glowColorRGB = { 0, 4, 2.5 }; // gray shield // cyan 
-        } else {
+        }  else {
             settingIndex = 70;
             glowColorRGB = { 0, 1.5, 0 }; // low health enemies // greeen
         }
@@ -259,18 +260,18 @@ struct Player {
         long highlightSettingsPtr = mem::Read<long>( OFF_REGION + OFF_GLOW_HIGHLIGHTS);
         if (!isSameTeam) {
             mem::Write<typeof(highlightFunctionBits)>(
-                highlightSettingsPtr + HIGHLIGHT_TYPE_SIZE * settingIndex + 0, highlightFunctionBits);
+                highlightSettingsPtr + OFF_HIGHLIGHT_TYPE_SIZE * settingIndex + 0, highlightFunctionBits);
             mem::Write<typeof(glowColorRGB)>(
-                highlightSettingsPtr + HIGHLIGHT_TYPE_SIZE * settingIndex + 4, glowColorRGB);
+                highlightSettingsPtr + OFF_HIGHLIGHT_TYPE_SIZE * settingIndex + 4, glowColorRGB);
             mem::Write<int>(basePointer + OFF_GLOW_FIX, 0);
         }
         
         //item Glow
         for (int highlightId = 30; highlightId < 40; highlightId++) {
         const GlowMode newGlowMode = { 137,0,0,127 };
-        const GlowMode oldGlowMode = mem::Read<GlowMode>(highlightSettingsPtr + (HIGHLIGHT_TYPE_SIZE * highlightId) + 0);
+        const GlowMode oldGlowMode = mem::Read<GlowMode>(highlightSettingsPtr + (OFF_HIGHLIGHT_TYPE_SIZE * highlightId) + 0);
         if (newGlowMode != oldGlowMode)
-            mem::Write<GlowMode>(highlightSettingsPtr + (HIGHLIGHT_TYPE_SIZE * highlightId) + 0, newGlowMode);
+            mem::Write<GlowMode>(highlightSettingsPtr + (OFF_HIGHLIGHT_TYPE_SIZE * highlightId) + 0, newGlowMode);
         }
     }
 
